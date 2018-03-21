@@ -19,9 +19,17 @@ function printf(x)
   print(printtab(x))
 end
 
+path = "K:/hidden-name/Teaching/2016_Lua/[Lab]/Lecture 04.pdf"
+print(string.match(path , "/([^/]+)%.(%w+)$"))
+
+local function unpath(s)
+  local t={}
+  for w in  string.gmatch(s ,"([^/]+)/") do
+    table.insert(t,w)
+  end
+  table.insert(t ,{string.match(path , "/([^/]+)%.(%w+)$")})
+  return t
+end
 
 
-printf ( {'ala', 'ma',127 , 'kotów'} )
-printf ( {'to są', {}, {2, 'tablice '}, 'zagnieżdżone?', {true}} )
-printf ({'a', 7, true})
-printf ({nil})
+printf(unpath(path))
